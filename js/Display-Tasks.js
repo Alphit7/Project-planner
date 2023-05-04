@@ -41,9 +41,7 @@ function getTimeRemaining(task) {
   if (daysRemaining === 0) {
     return "Dans " + hoursRemaining + " heures";
   } else if (daysRemaining > 1) {
-    return (
-      "Dans " + daysRemaining + " jours" + " et " + hoursRemaining + " heures"
-    );
+    return "Dans " + daysRemaining + " jours";
   } else {
     return "En retard";
   }
