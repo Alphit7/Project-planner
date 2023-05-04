@@ -9,10 +9,10 @@ let taskSubmitInput = document.querySelector("#task__submit");
 let taskContainer = document.querySelector("#taskContainer");
 let today = new Date();
 
-export function displayTasks() {
+export function displayTasks(collection) {
   taskContainer.innerHTML = "";
-  let storedTasks = getTasks();
-  storedTasks.forEach((task) => {
+  collection = getTasks();
+  collection.forEach((task) => {
     const taskCard = document.createElement("div");
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
@@ -29,7 +29,7 @@ export function displayTasks() {
     deleteButton.textContent = "Delete"
     deleteButton.addEventListener("click", ()=>{
       taskCard.remove();
-      storedTasks.splice(task);
+      collection.splice(task);
       saveTasks(tasks);
     })
 
@@ -43,7 +43,7 @@ export function displayTasks() {
 }
 
 
-function getTimeRemaining(task) {
+export function getTimeRemaining(task) {
   const dueDate = new Date(task.dueDate);
 
   const timeRemaining = dueDate - new Date();
