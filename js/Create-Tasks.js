@@ -24,5 +24,6 @@ export function createTask() {
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
   taskDateInput.value = "";
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   displayTasks();
 }

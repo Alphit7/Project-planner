@@ -9,7 +9,8 @@ let today = new Date();
 
 export function displayTasks() {
   taskContainer.innerHTML = "";
-  tasks.forEach((task) => {
+  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  storedTasks.forEach((task) => {
     const taskCard = document.createElement("div");
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
@@ -36,7 +37,6 @@ function getTimeRemaining(task) {
 
   const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
   const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
-  console.log(daysRemaining);
 
   if (daysRemaining === 0) {
     return "Dans " + hoursRemaining + " heures";
