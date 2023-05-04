@@ -1,4 +1,6 @@
 import { tasks } from "./collection.js";
+import { getTasks } from "./load-tasks.js";
+import { saveTasks } from "./save-tasks.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
@@ -9,7 +11,7 @@ let today = new Date();
 
 export function displayTasks() {
   taskContainer.innerHTML = "";
-  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  let storedTasks = getTasks();
   storedTasks.forEach((task) => {
     const taskCard = document.createElement("div");
     taskContainer.appendChild(taskCard);
@@ -23,13 +25,24 @@ export function displayTasks() {
     timeLeft.textContent = getTimeRemaining(task);
     const taskStatus = document.createElement("span");
     taskStatus.textContent = "To-Do";
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete"
+    deleteButton.addEventListener("click", ()=>{
+      taskCard.remove();
+      storedTasks.splice(task);
+      saveTasks(tasks);
+    })
+
     taskCard.appendChild(taskName);
     taskCard.appendChild(taskDescription);
     taskCard.appendChild(taskDate);
     taskCard.appendChild(timeLeft);
     taskCard.appendChild(taskStatus);
+    taskCard.appendChild(deleteButton);
   });
 }
+
+
 function getTimeRemaining(task) {
   const dueDate = new Date(task.dueDate);
 

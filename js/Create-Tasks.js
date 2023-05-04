@@ -1,5 +1,7 @@
 import { displayTasks } from "./Display-Tasks.js";
 import { tasks } from "./collection.js";
+import { getTasks } from "./load-tasks.js";
+import { saveTasks } from "./save-tasks.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
@@ -13,17 +15,23 @@ export function createTask() {
   ) {
     return;
   }
+
   const newTask = {
     name: taskNameInput.value.trim(),
     description: taskDescriptionInput.value.trim(),
     dueDate: taskDateInput.value,
     status: "To-Do",
   };
-  tasks.push(newTask);
-  console.log(tasks);
+
+  let newTasksCollection = getTasks();
+
+  newTasksCollection.push(newTask);
+
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
   taskDateInput.value = "";
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  saveTasks(newTasksCollection);
+  getTasks();
   displayTasks();
 }
