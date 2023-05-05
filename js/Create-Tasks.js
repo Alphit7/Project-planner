@@ -1,11 +1,11 @@
 import { displayTasks } from "./Display-Tasks.js";
-import { tasks } from "./collection.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
 let taskDateInput = document.querySelector("#task__date");
 
 export function createTask() {
+  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
   if (
     !taskNameInput.value ||
     !taskDescriptionInput.value ||
@@ -19,10 +19,10 @@ export function createTask() {
     dueDate: taskDateInput.value,
     status: "To-Do",
   };
-  tasks.push(newTask);
+  storedTasks.push(newTask);
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
   taskDateInput.value = "";
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(storedTasks));
   displayTasks();
 }

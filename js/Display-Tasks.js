@@ -12,17 +12,23 @@ export function displayTasks() {
   let storedTasks = JSON.parse(localStorage.getItem("tasks"));
   storedTasks.forEach((task) => {
     const taskCard = document.createElement("div");
-    taskCard.setAttribute("class", task.status);
+    taskCard.classList.add("Task__Card");
+    taskCard.classList.add(task.status);
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
+    taskName.setAttribute("class", "Task__Card__Name");
     taskName.textContent = task.name;
     const taskDescription = document.createElement("p");
+    taskDescription.setAttribute("class", "Task__Card__Description");
     taskDescription.textContent = task.description;
     const taskDate = document.createElement("span");
+    taskDate.setAttribute("class", "Task__Card__Date");
     taskDate.textContent = task.dueDate;
     const timeLeft = document.createElement("span");
+    timeLeft.setAttribute("class", "Task__Card__Time");
     timeLeft.textContent = getTimeRemaining(task);
     const taskStatus = document.createElement("select");
+    taskStatus.setAttribute("class", "Task__Card__Status");
     const options = ["To-Do", "Doing", "Done"];
     options.forEach((option) => {
       const statusOption = document.createElement("option");
@@ -34,10 +40,13 @@ export function displayTasks() {
       task.status = taskStatus.value;
       console.log(task.status);
       localStorage.setItem("tasks", JSON.stringify(storedTasks));
-      taskCard.removeAttribute("class");
-      taskCard.setAttribute("class", task.status);
+      taskCard.classList.remove("To-Do");
+      taskCard.classList.remove("Doing");
+      taskCard.classList.remove("Done");
+      taskCard.classList.add(task.status);
     });
     const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "Task__Card__Delete");
     deleteButton.setAttribute("id", storedTasks.indexOf(task));
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => {
