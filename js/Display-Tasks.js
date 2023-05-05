@@ -7,11 +7,12 @@ let taskSubmitInput = document.querySelector("#task__submit");
 let taskContainer = document.querySelector("#taskContainer");
 let today = new Date();
 
-export function displayTasks(i) {
+export function displayTasks() {
   taskContainer.innerHTML = "";
   let storedTasks = JSON.parse(localStorage.getItem("tasks"));
   storedTasks.forEach((task) => {
     const taskCard = document.createElement("div");
+    taskCard.setAttribute("class", task.status);
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
     taskName.textContent = task.name;
@@ -21,8 +22,21 @@ export function displayTasks(i) {
     taskDate.textContent = task.dueDate;
     const timeLeft = document.createElement("span");
     timeLeft.textContent = getTimeRemaining(task);
-    const taskStatus = document.createElement("span");
-    taskStatus.textContent = "To-Do";
+    const taskStatus = document.createElement("select");
+    const options = ["To-Do", "Doing", "Done"];
+    options.forEach((option) => {
+      const statusOption = document.createElement("option");
+      statusOption.textContent = option;
+      taskStatus.appendChild(statusOption);
+    });
+    taskStatus.value = task.status;
+    taskStatus.addEventListener("change", () => {
+      task.status = taskStatus.value;
+      console.log(task.status);
+      localStorage.setItem("tasks", JSON.stringify(storedTasks));
+      taskCard.removeAttribute("class");
+      taskCard.setAttribute("class", task.status);
+    });
     const deleteButton = document.createElement("button");
     deleteButton.setAttribute("id", storedTasks.indexOf(task));
     deleteButton.textContent = "Delete";
@@ -39,7 +53,6 @@ export function displayTasks(i) {
     taskCard.appendChild(timeLeft);
     taskCard.appendChild(taskStatus);
     taskCard.appendChild(deleteButton);
-    i++;
   });
 }
 function getTimeRemaining(task) {
