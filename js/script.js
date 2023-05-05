@@ -14,24 +14,25 @@ submit.addEventListener("click", createTask);
 const sortSelect = document.querySelector("#sort__select");
 const selectedOption = sortSelect.value;
 function sortTasks() {
+  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
   const sortSelect = document.querySelector("#sort__select");
   const selectedOption = sortSelect.value;
   if (selectedOption === "nameAsc") {
     tasks.sort((a, b) => a.name.localeCompare(b.name));
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
     displayTasks();
   } else if (selectedOption === "nameDesc") {
     tasks.sort((a, b) => b.name.localeCompare(a.name));
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
     displayTasks();
   } else if (selectedOption === "dateasc") {
     tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     tasks.reverse();
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
     displayTasks();
   } else if (selectedOption === "datedesc") {
     tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(storedTasks));
     displayTasks();
   }
 }
