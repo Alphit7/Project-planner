@@ -1,1 +1,1 @@
-export let tasks = [];
+export let tasks = JSON.parse(localStorage.getItem("tasks"));

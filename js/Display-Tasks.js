@@ -1,6 +1,4 @@
 import { tasks } from "./collection.js";
-import { getTasks } from "./load-tasks.js";
-import { saveTasks } from "./save-tasks.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
@@ -9,10 +7,10 @@ let taskSubmitInput = document.querySelector("#task__submit");
 let taskContainer = document.querySelector("#taskContainer");
 let today = new Date();
 
-export function displayTasks(collection) {
+export function displayTasks(i) {
   taskContainer.innerHTML = "";
-  collection = getTasks();
-  collection.forEach((task) => {
+  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  storedTasks.forEach((task) => {
     const taskCard = document.createElement("div");
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
@@ -26,24 +24,25 @@ export function displayTasks(collection) {
     const taskStatus = document.createElement("span");
     taskStatus.textContent = "To-Do";
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete"
-    deleteButton.addEventListener("click", ()=>{
+    deleteButton.setAttribute("id", storedTasks.indexOf(task));
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
       taskCard.remove();
-      collection.splice(task);
-      saveTasks(tasks);
-    })
-
+      let index = deleteButton.id;
+      storedTasks.splice(index, 1);
+      localStorage.setItem("tasks", JSON.stringify(storedTasks));
+      displayTasks();
+    });
     taskCard.appendChild(taskName);
     taskCard.appendChild(taskDescription);
     taskCard.appendChild(taskDate);
     taskCard.appendChild(timeLeft);
     taskCard.appendChild(taskStatus);
     taskCard.appendChild(deleteButton);
+    i++;
   });
 }
-
-
-export function getTimeRemaining(task) {
+function getTimeRemaining(task) {
   const dueDate = new Date(task.dueDate);
 
   const timeRemaining = dueDate - new Date();
