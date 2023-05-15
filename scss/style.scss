@@ -1,9 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+body{
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+main{
+    max-width: 750px;
+    margin: auto;
+}
+
 #taskInput{
-    display: flex;
-    flex-wrap: wrap;
     border: 2px solid black;
     padding: 3px;
+    margin-top: 20px;
+
+    .filter__select{
+        margin-left: 20px;
+    }
 }
+
 #task__description{
     resize: none;
 }
@@ -14,8 +31,75 @@
 .Task__Card{
     display:flex;
     flex-direction: column;
-    margin: 3px;
+    margin: 10px;
     border: 2px solid black;
     border-radius: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: white;
+
+}
+
+.section__title{
+    text-align: center;
+}
+.section__taskForm{
+    align-items: center;
+    background-color: white;
+    h2{
+        text-align: center;
+    }
+    div{
+        text-align: center;
+    }
+    input{
+        margin: 10px;
+    }
+    button{
+        cursor: pointer;
+        width: 50px;
+        border: none;
+        background-color: white;
+    }
+    svg{
+        color: #4caf50;
+    }
+}
+
+.section__taskForm__animation{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 2s ease;
+}
+
+.section__taskForm__animation.expanded {
+    max-height: 500px; /* Hauteur maximale souhaitée */
+    transition: max-height 2s ease;
+}
+
+.btnMoins{
+    display: none;
+}
+
+.section__sort{
+    text-align: center;
+}
+
+#task__name{
+    margin-left :auto;
+}
+#task__submit{
+    margin-right: auto;
+    padding: 10px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#sort__select{
+    width: 20%;
+    margin-right: 20px;
+    margin: 20px;
 }

@@ -1,4 +1,3 @@
-import { tasks } from "./collection.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
@@ -17,16 +16,16 @@ export function displayTasks() {
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
     taskName.setAttribute("class", "Task__Card__Name");
-    taskName.textContent = task.name;
+    taskName.textContent = "Name : " + task.name;
     const taskDescription = document.createElement("p");
     taskDescription.setAttribute("class", "Task__Card__Description");
-    taskDescription.textContent = task.description;
+    taskDescription.textContent = "Description : " + task.description;
     const taskDate = document.createElement("span");
     taskDate.setAttribute("class", "Task__Card__Date");
-    taskDate.textContent = task.dueDate;
+    taskDate.textContent = "End for : " + task.dueDate;
     const timeLeft = document.createElement("span");
     timeLeft.setAttribute("class", "Task__Card__Time");
-    timeLeft.textContent = getTimeRemaining(task);
+    timeLeft.textContent = "Remaining time : " + getTimeRemaining(task);
     const taskStatus = document.createElement("select");
     taskStatus.setAttribute("class", "Task__Card__Status");
     const options = ["To-Do", "Doing", "Done"];
