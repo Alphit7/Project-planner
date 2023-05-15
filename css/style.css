@@ -1,0 +1,166 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  color: #181b32;
+}
+
+main {
+  max-width: 750px;
+  margin: auto;
+}
+
+#taskInput {
+  border: 2px solid #A2A3A4;
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 20px;
+}
+#taskInput .filter__select {
+  margin-left: 20px;
+}
+
+#task__description {
+  resize: none;
+}
+
+#taskContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Task__Card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 2px solid #A2A3A4;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  height: 320px;
+  width: 170px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgb(32, 32, 32);
+}
+.Task__Card__Edit {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #4d77ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select {
+  border-radius: 3px;
+  padding: 5px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.Task__Card__Name {
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.Task__Card__Description {
+  overflow-wrap: break-word;
+  max-height: 60px;
+  margin-bottom: 50px;
+}
+
+.Task__Card__Status {
+  text-align: center;
+  padding: 5px;
+  font-family: "Josefin Sans", sans-serif;
+}
+.Task__Card__Status option {
+  padding: 3px;
+}
+
+.Task__Card__Delete {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.Task__Card__Date, .Task__Card__Time, .Task__Card__Status, .Task__Card__Delete {
+  margin: 5px;
+}
+
+.section__title {
+  text-align: center;
+}
+
+.section__taskForm {
+  align-items: center;
+  background-color: white;
+}
+.section__taskForm h2 {
+  text-align: center;
+}
+.section__taskForm div {
+  text-align: center;
+}
+.section__taskForm input {
+  margin: 10px;
+}
+.section__taskForm button {
+  cursor: pointer;
+  width: 50px;
+  border: none;
+  background-color: white;
+}
+.section__taskForm svg {
+  color: #4caf50;
+}
+
+.section__taskForm__animation {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease;
+}
+
+.section__taskForm__animation.expanded {
+  max-height: 500px; /* Hauteur maximale souhaitée */
+  transition: max-height 2s ease;
+}
+
+.btnMoins {
+  display: none;
+}
+
+.section__sort {
+  text-align: center;
+}
+
+#task__name {
+  margin-left: auto;
+}
+
+#task__submit {
+  margin-right: auto;
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#sort__select {
+  width: 20%;
+  margin-right: 20px;
+  margin: 20px;
+}/*# sourceMappingURL=style.css.map */
