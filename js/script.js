@@ -1,6 +1,8 @@
 import { createTask } from "./Create-Tasks.js";
 import { displayTasks } from "./Display-Tasks.js";
 import { handleEditClick } from "./edit.js";
+import { filterTasks } from "./filterTasks.js";
+import { sortTasks } from "./sortTasks.js";
 
 window.addEventListener("load", () => {
   let storedTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -15,90 +17,8 @@ submit.addEventListener("click", createTask);
 
 const sortSelect = document.querySelector("#sort__select");
 const selectedOption = sortSelect.value;
-function sortTasks() {
-  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
-  const sortSelect = document.querySelector("#sort__select");
-  const selectedOption = sortSelect.value;
-  if (selectedOption === "nameAsc") {
-    storedTasks.sort((a, b) => a.name.localeCompare(b.name));
-    localStorage.setItem("tasks", JSON.stringify(storedTasks));
-    displayTasks();
-  } else if (selectedOption === "nameDesc") {
-    storedTasks.sort((a, b) => b.name.localeCompare(a.name));
-    localStorage.setItem("tasks", JSON.stringify(storedTasks));
-    displayTasks();
-  } else if (selectedOption === "dateasc") {
-    storedTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    storedTasks.reverse();
-    localStorage.setItem("tasks", JSON.stringify(storedTasks));
-    displayTasks();
-  } else if (selectedOption === "datedesc") {
-    storedTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    localStorage.setItem("tasks", JSON.stringify(storedTasks));
-    displayTasks();
-  }
-}
 sortSelect.addEventListener("change", sortTasks);
 
-// function hideToDosOnEnter(event) {
-//   if (event.keyCode === 13) {
-//     // Check if the enter key was pressed
-//     const toDoList = document.querySelectorAll(".To-Do"); // Get all elements with the "To-Do" class
-//     toDoList.forEach((todo) => {
-//       todo.style.display = "none"; // Hide each element
-//     });
-//   }
-// }
-// document.addEventListener("keyup", hideToDosOnEnter);
-
-function filterTasks() {
-  const toDoList = document.querySelectorAll(".To-Do");
-  const doingList = document.querySelectorAll(".Doing");
-  const doneList = document.querySelectorAll(".Done");
-  const filterSelect = document.querySelector("#filter__select");
-  const selectedOption = filterSelect.value;
-  if (selectedOption === "To-Do") {
-    toDoList.forEach((todo) => {
-      todo.style.display = "flex";
-    });
-    doingList.forEach((doing) => {
-      doing.style.display = "none";
-    });
-    doneList.forEach((done) => {
-      done.style.display = "none";
-    });
-  } else if (selectedOption === "Doing") {
-    toDoList.forEach((todo) => {
-      todo.style.display = "none";
-    });
-    doingList.forEach((doing) => {
-      doing.style.display = "flex";
-    });
-    doneList.forEach((done) => {
-      done.style.display = "none";
-    });
-  } else if (selectedOption === "Done") {
-    toDoList.forEach((todo) => {
-      todo.style.display = "none";
-    });
-    doingList.forEach((doing) => {
-      doing.style.display = "none";
-    });
-    doneList.forEach((done) => {
-      done.style.display = "flex";
-    });
-  } else if (selectedOption === "noFilter") {
-    toDoList.forEach((todo) => {
-      todo.style.display = "flex";
-    });
-    doingList.forEach((doing) => {
-      doing.style.display = "flex";
-    });
-    doneList.forEach((done) => {
-      done.style.display = "flex";
-    });
-  }
-}
 const filterSelect = document.querySelector("#filter__select");
 filterSelect.addEventListener("change", filterTasks);
 
