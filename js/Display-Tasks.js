@@ -1,3 +1,4 @@
+import { handleEditClick } from "./edit.js";
 
 let taskNameInput = document.querySelector("#task__name");
 let taskDescriptionInput = document.querySelector("#task__description");
@@ -14,6 +15,10 @@ export function displayTasks() {
     taskCard.classList.add("Task__Card");
     taskCard.classList.add(task.status);
     taskContainer.appendChild(taskCard);
+    let editButton = document.createElement("button");
+    editButton.setAttribute("class", "Task__Card__Edit");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", handleEditClick);
     const taskName = document.createElement("span");
     taskName.setAttribute("class", "Task__Card__Name");
     taskName.textContent = task.name;
@@ -60,6 +65,7 @@ export function displayTasks() {
     taskCard.appendChild(taskDate);
     taskCard.appendChild(timeLeft);
     taskCard.appendChild(taskStatus);
+    taskCard.appendChild(editButton);
     taskCard.appendChild(deleteButton);
   });
 }
@@ -72,10 +78,10 @@ function getTimeRemaining(task) {
   const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
 
   if (daysRemaining === 0) {
-    if(hoursRemaining >=1){
-    return "Dans " + (hoursRemaining -1) + " heures";
+    if (hoursRemaining >= 1) {
+      return "Dans " + (hoursRemaining - 1) + " heures";
     } else {
-      return "Dans " + (hoursRemaining) + " heures";
+      return "Dans " + hoursRemaining + " heures";
     }
   } else if (daysRemaining >= 1) {
     return "Dans " + daysRemaining + " jours";

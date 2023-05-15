@@ -40,10 +40,20 @@ main {
   border-radius: 10px;
   padding: 20px;
   background-color: white;
-  height: 265px;
+  height: 320px;
   width: 170px;
   text-align: center;
   box-shadow: 2px 2px 5px rgb(32, 32, 32);
+}
+.Task__Card__Edit {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #4d77ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 select {
@@ -74,7 +84,7 @@ select {
 }
 
 .Task__Card__Delete {
-  margin-left: 5px;
+  margin: 5px;
   padding: 5px 10px;
   background-color: #ff4d4d;
   color: white;
@@ -153,6 +163,4 @@ select {
   width: 20%;
   margin-right: 20px;
   margin: 20px;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
