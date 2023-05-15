@@ -16,7 +16,7 @@ export function displayTasks() {
     taskContainer.appendChild(taskCard);
     const taskName = document.createElement("span");
     taskName.setAttribute("class", "Task__Card__Name");
-    taskName.textContent = "Name : " + task.name;
+    taskName.textContent = task.name;
     const taskDescription = document.createElement("p");
     taskDescription.setAttribute("class", "Task__Card__Description");
     taskDescription.textContent = "Description : " + task.description;
@@ -72,8 +72,12 @@ function getTimeRemaining(task) {
   const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
 
   if (daysRemaining === 0) {
-    return "Dans " + hoursRemaining + " heures";
-  } else if (daysRemaining > 1) {
+    if(hoursRemaining >=1){
+    return "Dans " + (hoursRemaining -1) + " heures";
+    } else {
+      return "Dans " + (hoursRemaining) + " heures";
+    }
+  } else if (daysRemaining >= 1) {
     return "Dans " + daysRemaining + " jours";
   } else {
     return "En retard";

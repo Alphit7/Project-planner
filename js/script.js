@@ -58,7 +58,7 @@ function filterTasks() {
   const selectedOption = filterSelect.value;
   if (selectedOption === "To-Do") {
     toDoList.forEach((todo) => {
-      todo.style.display = "block";
+      todo.style.display = "flex";
     });
     doingList.forEach((doing) => {
       doing.style.display = "none";
@@ -71,7 +71,7 @@ function filterTasks() {
       todo.style.display = "none";
     });
     doingList.forEach((doing) => {
-      doing.style.display = "block";
+      doing.style.display = "flex";
     });
     doneList.forEach((done) => {
       done.style.display = "none";
@@ -84,17 +84,17 @@ function filterTasks() {
       doing.style.display = "none";
     });
     doneList.forEach((done) => {
-      done.style.display = "block";
+      done.style.display = "flex";
     });
   } else if (selectedOption === "noFilter") {
     toDoList.forEach((todo) => {
-      todo.style.display = "block";
+      todo.style.display = "flex";
     });
     doingList.forEach((doing) => {
-      doing.style.display = "block";
+      doing.style.display = "flex";
     });
     doneList.forEach((done) => {
-      done.style.display = "block";
+      done.style.display = "flex";
     });
   }
 }
